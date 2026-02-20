@@ -57,6 +57,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useCartStore } from '../stores/cartStore'
+import Swal from "sweetalert2";
 
 const cartStore = useCartStore();
 
@@ -75,6 +76,15 @@ const truncatedDescription = computed(() => {
 
 const addToCart = () => {
     cartStore.addToCart(props.product);
+    Swal.fire({
+    toast: true,
+    position: "top",
+    icon: "success",
+    title: `item added to cart 🛒`,
+    showConfirmButton: false,
+    timer: 1500,
+    timerProgressBar: true,
+  })
 }
 
 </script>
