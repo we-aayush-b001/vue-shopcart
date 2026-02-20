@@ -11,12 +11,12 @@
         {{ productStore.error }}
       </div>
 
-       <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <ProductDetail
-          v-for="product in productStore.filteredProducts"
-          :key="product.id"
-          :product="product"
-        />
+      <div v-else-if="productStore.filteredProducts.length === 0" class="text-gray-500">
+        No results found
+      </div>
+
+      <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <ProductDetail v-for="product in productStore.filteredProducts" :key="product.id" :product="product" />
       </div>
     </div>
 

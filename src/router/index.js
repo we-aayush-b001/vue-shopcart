@@ -11,9 +11,14 @@ const routes = [
     path: '/products',
     component: Products
   },
-   {
+  {
     path: '/cart',
     component: Cart
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('../views/NotFound.vue')
   }
 ]
 

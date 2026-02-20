@@ -1,22 +1,18 @@
 <template>
     <MainLayout>
-                    <div class="max-w-6xl mx-auto p-6">
-                <h1 class="text-2xl font-bold mb-6">Shopping Cart</h1>
+        <div class="max-w-6xl mx-auto p-6">
+            <h1 class="text-2xl font-bold mb-6">Shopping Cart</h1>
 
-                <div v-if="cartStore.cartItems.length === 0" class="text-gray-500">
+            <div v-if="cartStore.cartItems.length === 0" class="text-gray-500">
                 Your cart is empty.
-                </div>
+            </div>
 
-                <!-- Cart Items -->
-                <div v-else class="grid md:grid-cols-3 gap-6">
-                
+            <!-- Cart Items -->
+            <div v-else class="grid md:grid-cols-3 gap-6">
+
                 <!-- Items List -->
                 <div class="md:col-span-2 space-y-4">
-                    <CartDetail
-                    v-for="item in cartStore.cartItems"
-                    :key="item.id"
-                    :item="item"
-                    />
+                    <CartDetail v-for="item in cartStore.cartItems" :key="item.id" :item="item" />
                 </div>
 
                 <!-- Cart Summary -->
@@ -24,22 +20,22 @@
                     <h2 class="text-lg font-semibold mb-4">Cart Summary</h2>
 
                     <div class="flex justify-between mb-2">
-                    <span>Total Items:</span>
-                    <span class="font-semibold">
-                        {{ cartStore.totalItems }}
-                    </span>
+                        <span>Total Items:</span>
+                        <span class="font-semibold">
+                            {{ cartStore.totalItems }}
+                        </span>
                     </div>
 
                     <div class="flex justify-between mb-4">
-                    <span>Total Price:</span>
-                    <span class="font-semibold text-indigo-600">
-                        ${{ cartStore.totalPrice.toFixed(2) }}
-                    </span>
+                        <span>Total Price:</span>
+                        <span class="font-semibold text-indigo-600">
+                            ${{ cartStore.totalPrice.toFixed(2) }}
+                        </span>
                     </div>
 
                 </div>
-                </div>
             </div>
+        </div>
     </MainLayout>
 
 </template>
