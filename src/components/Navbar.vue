@@ -6,7 +6,7 @@
     <div class="flex items-center space-x-2">
       <img src="../assets/dashboard.svg" alt="dashboard" class="w-8 h-8" />
       <h1 class="text-2xl font-bold text-green-500">
-        Dashboard
+        Bansal Bazaar
       </h1>
     </div>
 

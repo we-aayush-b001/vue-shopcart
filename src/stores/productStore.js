@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 export const useProductStore = defineStore('product', () => {
   
@@ -11,13 +11,13 @@ export const useProductStore = defineStore('product', () => {
   const loading = ref(false)
   const error = ref(null)
 
-  const search = ref('')
+  const searchQuery = ref('')
   const selectedCategory = ref('')
-  const sortOption = ref('')
+  const sortOption = ref('');
+  const searchInput = ref('')
+  let timeout = null;
 
-  // -------------------
   // ACTION: Fetch Products
-  // -------------------
   const fetchProducts = async () => {
     loading.value = true
     error.value = null
@@ -32,10 +32,6 @@ export const useProductStore = defineStore('product', () => {
     }
   }
 
-  // -------------------
-  // GETTERS (Computed)
-  // -------------------
-
   const categories = computed(() => {
     return [...new Set(products.value.map(p => p.category))]
   })
@@ -43,10 +39,10 @@ export const useProductStore = defineStore('product', () => {
   const filteredProducts = computed(() => {
     let result = [...products.value]
 
-    // Search
-    if (search.value) {
+    // searchQuery
+    if (searchQuery.value) {
       result = result.filter(p =>
-        p.title.toLowerCase().includes(search.value.toLowerCase())
+        p.title.toLowerCase().includes(searchQuery.value.toLowerCase())
       )
     }
 
@@ -73,15 +69,23 @@ export const useProductStore = defineStore('product', () => {
     return result
   })
 
+  watch(searchInput, (newValue) => {  // Debounce Search For Performnace Optimization
+    clearTimeout(timeout)
+    timeout = setTimeout(() => {
+     searchQuery.value = newValue
+    }, 300);
+   })
+
   return {
     products,
     loading,
     error,
-    search,
+    searchQuery,
     selectedCategory,
     sortOption,
     categories,
     filteredProducts,
+    searchInput,
     fetchProducts
   }
 })
