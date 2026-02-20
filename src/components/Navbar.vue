@@ -1,0 +1,31 @@
+<template>
+  <nav class="bg-white shadow-md">
+  <div class="px-4 py-2 flex justify-between items-center">
+    
+    <!-- Logo -->
+    <div class="flex items-center space-x-2">
+      <img src="../assets/dashboard.svg" alt="dashboard" class="w-8 h-8" />
+      <h1 class="text-2xl font-bold text-green-500">
+        Dashboard
+      </h1>
+    </div>
+
+    <!-- Links -->
+    <div class="space-x-6">
+      <RouterLink to="/products" class="text-gray-700 hover:text-indigo-600 font-medium">
+        Products
+      </RouterLink>
+
+      <RouterLink to="/cart" class="text-gray-700 hover:text-indigo-600 font-medium">
+        Cart
+      </RouterLink>
+    </div>
+
+  </div>
+</nav>
+</template>
+
+
+<script setup>
+import { RouterLink } from 'vue-router'
+</script>
