@@ -16,7 +16,7 @@
       </div>
 
        <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <div 
+        <!-- <div 
           v-for="product in productStore.filteredProducts" 
           :key="product.id"
           class="border p-4 rounded shadow hover:shadow-lg transition"
@@ -27,7 +27,12 @@
           <p class="text-gray-600">
             ${{ product.price }}
           </p>
-        </div>
+        </div> -->
+        <ProductDetail
+          v-for="product in productStore.filteredProducts"
+          :key="product.id"
+          :product="product"
+        />
       </div>
     </div>
 
@@ -41,6 +46,7 @@ import MainLayout from '../layouts/MainLayout.vue'
 import Header from '../components/Header.vue'
 import { onMounted } from 'vue'
 import { useProductStore } from '../stores/productStore'
+import ProductDetail from '../components/ProductDetail.vue'
 
 const productStore = useProductStore();
 
